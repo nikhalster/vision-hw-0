@@ -20,6 +20,7 @@ float get_pixel(image im, int x, int y, int c)
     }
 
     return im.data[(c * im.h * im.w) + (im.w * y) + x];
+
 }
 
 void set_pixel(image im, int x, int y, int c, float v)
