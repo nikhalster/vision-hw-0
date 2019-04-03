@@ -53,7 +53,22 @@ image rgb_to_grayscale(image im)
 {
     assert(im.c == 3);
     image gray = make_image(im.w, im.h, 1);
-    // TODO Fill this in
+    for (int j = 0; j < im.h; j++){
+        for (int k = 0; k < im.w; k++){
+            // printf("Red:- %d\n", k + (im.w * j) * 1 );
+            // printf("Green:- %d\n", k + (im.w * j) * 2 );
+            // printf("Blue:- %d\n", k + (im.w * j) * 3 );
+            // float red = 0.299 * (k + (im.w * j));
+            // float green = 0.587 * ((k + (im.w * j)) * 2);
+            // float blue = 0.114 * ((k + (im.w * j)) * 3);
+            float red = im.data[(k + (im.w * j))];
+            float green = im.data[((k + (im.w * j)) + (im.h * im.w) )];
+            float blue = im.data[((k + (im.w * j)) + (im.h * im.w * 2))];
+            gray.data[k + (im.w * j)] = (0.299 * red) + (0.587 * green) + (0.114 * blue);
+           
+        }
+    }
+    
     return gray;
 }
 
