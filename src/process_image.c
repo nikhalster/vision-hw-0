@@ -83,7 +83,16 @@ void shift_image(image im, int c, float v)
 
 void clamp_image(image im)
 {
-    // TODO Fill this in
+    for (int j = 0; j < im.h; j++){
+        for (int k = 0; k < im.w; k++){
+            for (int c = 0; c < im.c; c++){
+                if (im.data[((k + (im.w * j)) + (im.h * im.w * c))] > 1.0){
+                    im.data[((k + (im.w * j)) + (im.h * im.w * c))] = 1.0;
+                }
+
+            }
+        }
+    }
 }
 
 
