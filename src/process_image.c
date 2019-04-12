@@ -165,5 +165,15 @@ void rgb_to_hsv(image im)
 
 void hsv_to_rgb(image im)
 {
-    // TODO Fill this in
+    for (int j = 0; j < im.h; j++){
+        for (int k = 0; k < im.w; k++){
+            float H = im.data[(k + (im.w * j))];
+            float S = im.data[((k + (im.w * j)) + (im.h * im.w) )];
+            float V = im.data[((k + (im.w * j)) + (im.h * im.w * 2))];
+
+            H = H * 6;
+            
+
+        }
+    }
 }
