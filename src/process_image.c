@@ -4,34 +4,46 @@
 #include <math.h>
 #include "image.h"
 
+ 
 float get_pixel(image im, int x, int y, int c)
 {
-    if(x > im.w){
-        x = im.w - 1;
+
+    if(x >=0){
+        if(x < im.w){
+            x = x;
+        }
+        else{
+            x = im.w - 1;
+        }
     }
-    else if(x < 0){
+    else{
         x = 0;
     }
-    if(y > im.h){
-        y = im.h - 1;
+
+    if(y >=0){
+        if(y < im.h){
+            y = y;
+        }
+        else{
+            y = im.h - 1;
+        }
     }
-    else if(y < 0){
+    else{
         y = 0;
     }
 
     return im.data[(c * im.h * im.w) + (im.w * y) + x];
-
 }
 
 void set_pixel(image im, int x, int y, int c, float v)
 {
-    if(x > im.w){
+    if(x >= im.w){
         return;
     }
     else if(x < 0){
         return;
     }
-    if(y > im.h){
+    if(y >= im.h){
         return;
     }
     else if(y < 0){
@@ -55,12 +67,6 @@ image rgb_to_grayscale(image im)
     image gray = make_image(im.w, im.h, 1);
     for (int j = 0; j < im.h; j++){
         for (int k = 0; k < im.w; k++){
-            // printf("Red:- %d\n", k + (im.w * j) * 1 );
-            // printf("Green:- %d\n", k + (im.w * j) * 2 );
-            // printf("Blue:- %d\n", k + (im.w * j) * 3 );
-            // float red = 0.299 * (k + (im.w * j));
-            // float green = 0.587 * ((k + (im.w * j)) * 2);
-            // float blue = 0.114 * ((k + (im.w * j)) * 3);
             float red = im.data[(k + (im.w * j))];
             float green = im.data[((k + (im.w * j)) + (im.h * im.w) )];
             float blue = im.data[((k + (im.w * j)) + (im.h * im.w * 2))];
@@ -179,4 +185,6 @@ void hsv_to_rgb(image im)
 
         }
     }
+
 }
+
